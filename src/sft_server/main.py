@@ -67,7 +67,7 @@ async def get_model_list():
     return {"status_code": 200, "status_message": "success", "data": model_list}
 
 if __name__ == "__main__":
-    port = 8000
+    port = 8001
     if sys.argv.__len__() > 1:
         port = int(sys.argv[1])
     uvicorn.run(app, host="0.0.0.0", port=port)

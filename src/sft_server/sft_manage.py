@@ -5,7 +5,6 @@ from logging import getLogger
 import shutil
 from cmd_manage import CmdManage
 import signal
-from subprocess import ProcessLookupError
 import os
 logger = getLogger(__name__)
 
@@ -77,10 +76,11 @@ class SFTManage:
             stderr_file = open(self.stderr_path, 'wb')
             pid_file = open(self.pid_path, 'wb')
            
-            pid, code = CmdManage.execute_cmd(self.ClientCli, options, commands,
-                                  stdout=stdout_file, 
-                                  stderr=stderr_file, 
-                                  pid_file=pid_file)
+            pid, code = CmdManage.execute_cmd(self.ClientCli, 
+                                              options, commands,
+                                              stdout=stdout_file, 
+                                              stderr=stderr_file, 
+                                              pid_file=pid_file)
             logger.info(f'job {self.job_id} finished, pid: {pid}, exit_code: {code}')
             # 将输出结果写进redis
             with open(self.stdout_path, 'rb') as f:
@@ -88,7 +88,6 @@ class SFTManage:
             with open(self.stderr_path, 'rb') as f:
                 exex_stderr = int(f.read())
             self.write_result(code, exex_stdout, exex_stderr)
-
 
         except Exception as e:
             logger.error(f'Failed to set exec lock key: {e}')

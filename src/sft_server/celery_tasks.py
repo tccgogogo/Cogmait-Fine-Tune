@@ -8,4 +8,4 @@ celery_app = Celery(
 @celery_app.task()
 def finetune_task(job_id: str, options: str, commands: dict):
     sft_manage = SFTManage()
-    sft_manage.finetune(job_id, options, commands)
+    sft_manage.run_job(job_id, options, commands)

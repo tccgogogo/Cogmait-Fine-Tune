@@ -98,4 +98,4 @@ class RedisManager:
         self.connection.disconnect()
 
 
-redis_client = RedisManager(settings.REDIS_URL)
+redis_client = RedisManager(settings.settings.redis_url)
