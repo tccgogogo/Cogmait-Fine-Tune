@@ -41,15 +41,25 @@ class RedisManager:
             self.close()
     
     def setNx(self, key: str, value: str, expiration: int = 3600):
+        """
+        设置键值对，仅当key不存在时，才能设置成功
+        返回：成功返回True，失败返回False
+        """
         try:
             if pickled := pickle.dumps(value):
                 result = self.connection.setnx(key, pickled)
-                self.connection.expire(key, expiration)
-                if not result:
-                    return False
-                return True
+                if result:
+                    self.connection.expire(key, expiration)
+                return bool(result)
+            else:
+                logger.error('pickle error, value={}', value)
+                return False
         except TypeError as e:
-            raise TypeError(f'Redis accepts values that can be pickled {e}')
+            logger.error(f'Redis accepts values that can be pickled: {e}')
+            return False
+        except Exception as e:
+            logger.error(f'Unexpected error in setNx: {e}')
+            return False
         finally:
             self.close()
     

@@ -27,20 +27,20 @@ def get_all_model():
 
 @app.post("/v1.0/sft/job/status")
 async def job_status(job_id: str=Body(...)):
-    sft_manage = SFTManage()
-    status = sft_manage.get_job_status(job_id)
+    sft_manage = SFTManage(job_id)
+    status = sft_manage.get_job_status()
     return {"status_code": 200, "status_message": "success", "status": status}
 
 @app.delete("/v1.0/sft/job")
 async def delete_job(job_id: str=Body(...)):
-    sft_manage = SFTManage()
-    sft_manage.delete_job(job_id)
+    sft_manage = SFTManage(job_id)
+    sft_manage.delete_job()
     return {"status_code": 200, "status_message": "success"}
 
 @app.post("/v1.0/sft/job/cancel")
 async def cancel_job(job_id: str=Body(...)):
-    sft_manage = SFTManage()
-    sft_manage.cancel_job(job_id)
+    sft_manage = SFTManage(job_id)
+    sft_manage.cancel_job()
     return {"status_code": 200, "status_message": "success"}
 
 @app.post("/v1.0/sft/job/log")

@@ -29,6 +29,8 @@ class CmdManage:
                 pid_file.close()
 
             exit_code = p.wait()
+            logger.info(f'execute cmd: {cmd} finished, exit_code: {exit_code}')
+
             return p.pid, exit_code
         except subprocess.TimeoutExpired:
             os.killpg(os.getpgid(p.pid), signal.SIGTERM)

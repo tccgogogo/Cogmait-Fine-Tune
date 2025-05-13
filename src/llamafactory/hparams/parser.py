@@ -201,7 +201,7 @@ def get_ray_args(args: Optional[Union[dict[str, Any], list[str]]] = None) -> Ray
 
 def get_train_args(args: Optional[Union[dict[str, Any], list[str]]] = None) -> _TRAIN_CLS:
     model_args, data_args, training_args, finetuning_args, generating_args = _parse_train_args(args)
-    logger.info("model_args: {}, data_args: {}, training_args: {}, finetuning_args: {}, generating_args: {}".format(model_args, data_args, training_args, finetuning_args, generating_args))
+    # logger.info("model_args: {}, data_args: {}, training_args: {}, finetuning_args: {}, generating_args: {}".format(model_args, data_args, training_args, finetuning_args, generating_args))
 
     # Setup logging
     if training_args.should_log:
@@ -399,12 +399,12 @@ def get_train_args(args: Optional[Union[dict[str, Any], list[str]]] = None) -> _
     data_args.packing = data_args.packing if data_args.packing is not None else finetuning_args.stage == "pt"
 
     # Log on each process the small summary
-    logger.info(
-        f"Process rank: {training_args.process_index}, "
-        f"world size: {training_args.world_size}, device: {training_args.device}, "
-        f"distributed training: {training_args.parallel_mode == ParallelMode.DISTRIBUTED}, "
-        f"compute dtype: {str(model_args.compute_dtype)}"
-    )
+    # logger.info(
+    #     f"Process rank: {training_args.process_index}, "
+    #     f"world size: {training_args.world_size}, device: {training_args.device}, "
+    #     f"distributed training: {training_args.parallel_mode == ParallelMode.DISTRIBUTED}, "
+    #     f"compute dtype: {str(model_args.compute_dtype)}"
+    # )
     transformers.set_seed(training_args.seed)
 
     return model_args, data_args, training_args, finetuning_args, generating_args
