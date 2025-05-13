@@ -1,0 +1,420 @@
+2025-05-13 16:16:21.901 | INFO     | llmtuner.wrapers.interface:main:40 - llamafactory args: Namespace(subcommand='train', model_name_or_path='/home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat', model_template='Qwen-7B-Chat', dataset='/home/tiancongcong/code/cogmait-fine-tune/data/alpaca_zh_demo.json', each_max_samples='100', output_dir='/home/tiancongcong/code/cogmait-fine-tune/finetune-output', finetuning_type='lora', val_ratio=0.1, per_device_train_batch_size=4, learning_rate=5e-05, num_train_epochs=3, max_seq_len=8192, cpu_load=False)
+2025-05-13 16:16:21.902 | INFO     | llmtuner.wrapers.trainval:trval_main:123 - export_params_cmd: 
+--model_name_or_path /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat --template qwen --finetuning_type lora --export_dir /home/tiancongcong/code/cogmait-fine-tune/finetune-output 
+2025-05-13 16:16:21.902 | INFO     | llmtuner.wrapers.trainval:trval_main:180 - train_cmd:python /home/tiancongcong/code/cogmait-fine-tune/src/llmtuner/wrapers/../../llamafactory/train/tuner.py \
+--stage sft --do_train True --finetuning_type lora --model_name_or_path /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat --template qwen --dataset alpaca_zh_demo.json --dataset_dir /home/tiancongcong/code/cogmait-fine-tune/data --val_size 0.1 --output_dir /home/tiancongcong/code/cogmait-fine-tune/finetune-output --overwrite_output_dir True --cutoff_len 8192 --learning_rate 5e-05 --per_device_train_batch_size 4 --per_device_eval_batch_size 1 --gradient_accumulation_steps 4 --lr_scheduler_type cosine --num_train_epochs 3 --logging_steps 10 --save_strategy epoch --evaluation_strategy epoch --metric_for_best_model eval_loss --load_best_model_at_end True --save_total_limit 1 --fp16 True --plot_loss True --max_samples 100 --lora_target c_attn
+/home/tiancongcong/miniconda3/envs/cogmait/lib/python3.12/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+[INFO|tokenization_utils_base.py:2204] 2025-05-13 16:16:25,806 >> loading file qwen.tiktoken
+[INFO|tokenization_utils_base.py:2204] 2025-05-13 16:16:25,806 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2204] 2025-05-13 16:16:25,806 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2204] 2025-05-13 16:16:25,806 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2204] 2025-05-13 16:16:25,806 >> loading file tokenizer.json
+[INFO|configuration_utils.py:673] 2025-05-13 16:16:26,029 >> loading configuration file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/config.json
+[INFO|configuration_utils.py:673] 2025-05-13 16:16:26,030 >> loading configuration file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/config.json
+[INFO|configuration_utils.py:742] 2025-05-13 16:16:26,030 >> Model config QWenConfig {
+  "_name_or_path": "/home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat",
+  "architectures": [
+    "QWenLMHeadModel"
+  ],
+  "attn_dropout_prob": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_qwen.QWenConfig",
+    "AutoModelForCausalLM": "modeling_qwen.QWenLMHeadModel"
+  },
+  "bf16": false,
+  "emb_dropout_prob": 0.0,
+  "fp16": false,
+  "fp32": false,
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "kv_channels": 128,
+  "layer_norm_epsilon": 1e-06,
+  "max_position_embeddings": 8192,
+  "model_type": "qwen",
+  "no_bias": true,
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "onnx_safe": null,
+  "rotary_emb_base": 10000,
+  "rotary_pct": 1.0,
+  "scale_attn_weights": true,
+  "seq_length": 8192,
+  "softmax_in_fp32": false,
+  "tie_word_embeddings": false,
+  "tokenizer_class": "QWenTokenizer",
+  "transformers_version": "4.45.2",
+  "use_cache": true,
+  "use_cache_kernel": false,
+  "use_cache_quantization": false,
+  "use_dynamic_ntk": true,
+  "use_flash_attn": "auto",
+  "use_logn_attn": true,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:2204] 2025-05-13 16:16:26,031 >> loading file qwen.tiktoken
+[INFO|tokenization_utils_base.py:2204] 2025-05-13 16:16:26,031 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2204] 2025-05-13 16:16:26,031 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2204] 2025-05-13 16:16:26,031 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2204] 2025-05-13 16:16:26,031 >> loading file tokenizer.json
+[INFO|configuration_utils.py:673] 2025-05-13 16:16:28,066 >> loading configuration file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/config.json
+[INFO|configuration_utils.py:673] 2025-05-13 16:16:28,066 >> loading configuration file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/config.json
+[INFO|configuration_utils.py:742] 2025-05-13 16:16:28,067 >> Model config QWenConfig {
+  "_name_or_path": "/home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat",
+  "architectures": [
+    "QWenLMHeadModel"
+  ],
+  "attn_dropout_prob": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_qwen.QWenConfig",
+    "AutoModelForCausalLM": "modeling_qwen.QWenLMHeadModel"
+  },
+  "bf16": false,
+  "emb_dropout_prob": 0.0,
+  "fp16": false,
+  "fp32": false,
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "kv_channels": 128,
+  "layer_norm_epsilon": 1e-06,
+  "max_position_embeddings": 8192,
+  "model_type": "qwen",
+  "no_bias": true,
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "onnx_safe": null,
+  "rotary_emb_base": 10000,
+  "rotary_pct": 1.0,
+  "scale_attn_weights": true,
+  "seq_length": 8192,
+  "softmax_in_fp32": false,
+  "tie_word_embeddings": false,
+  "tokenizer_class": "QWenTokenizer",
+  "transformers_version": "4.45.2",
+  "use_cache": true,
+  "use_cache_kernel": false,
+  "use_cache_quantization": false,
+  "use_dynamic_ntk": true,
+  "use_flash_attn": "auto",
+  "use_logn_attn": true,
+  "vocab_size": 151936
+}
+
+[INFO|modeling_utils.py:3729] 2025-05-13 16:16:28,099 >> loading weights file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/model.safetensors.index.json
+[INFO|modeling_utils.py:1622] 2025-05-13 16:16:28,099 >> Instantiating QWenLMHeadModel model under default dtype torch.float16.
+[INFO|configuration_utils.py:1099] 2025-05-13 16:16:28,100 >> Generate config GenerationConfig {
+  "use_cache": false
+}
+
+Loading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]Loading checkpoint shards:  12%|█▎        | 1/8 [00:01<00:07,  1.06s/it]Loading checkpoint shards:  25%|██▌       | 2/8 [00:02<00:06,  1.02s/it]Loading checkpoint shards:  38%|███▊      | 3/8 [00:03<00:05,  1.01s/it]Loading checkpoint shards:  50%|█████     | 4/8 [00:04<00:04,  1.04s/it]Loading checkpoint shards:  62%|██████▎   | 5/8 [00:05<00:03,  1.06s/it]Loading checkpoint shards:  75%|███████▌  | 6/8 [00:06<00:02,  1.07s/it]Loading checkpoint shards:  88%|████████▊ | 7/8 [00:07<00:01,  1.10s/it]Loading checkpoint shards: 100%|██████████| 8/8 [00:07<00:00,  1.11it/s]Loading checkpoint shards: 100%|██████████| 8/8 [00:07<00:00,  1.01it/s]
+[INFO|modeling_utils.py:4574] 2025-05-13 16:16:36,300 >> All model checkpoint weights were used when initializing QWenLMHeadModel.
+
+[INFO|modeling_utils.py:4582] 2025-05-13 16:16:36,300 >> All the weights of QWenLMHeadModel were initialized from the model checkpoint at /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use QWenLMHeadModel for predictions without further training.
+[INFO|configuration_utils.py:1052] 2025-05-13 16:16:36,302 >> loading configuration file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/generation_config.json
+[INFO|configuration_utils.py:1099] 2025-05-13 16:16:36,302 >> Generate config GenerationConfig {
+  "chat_format": "chatml",
+  "do_sample": true,
+  "eos_token_id": 151643,
+  "max_new_tokens": 512,
+  "max_window_size": 6144,
+  "pad_token_id": 151643,
+  "repetition_penalty": 1.1,
+  "top_k": 0,
+  "top_p": 0.8
+}
+
+[INFO|trainer.py:667] 2025-05-13 16:16:38,211 >> Using auto half precision backend
+[INFO|trainer.py:2243] 2025-05-13 16:16:39,033 >> ***** Running training *****
+[INFO|trainer.py:2244] 2025-05-13 16:16:39,033 >>   Num examples = 90
+[INFO|trainer.py:2245] 2025-05-13 16:16:39,033 >>   Num Epochs = 3
+[INFO|trainer.py:2246] 2025-05-13 16:16:39,033 >>   Instantaneous batch size per device = 4
+[INFO|trainer.py:2249] 2025-05-13 16:16:39,033 >>   Total train batch size (w. parallel, distributed & accumulation) = 16
+[INFO|trainer.py:2250] 2025-05-13 16:16:39,033 >>   Gradient Accumulation steps = 4
+[INFO|trainer.py:2251] 2025-05-13 16:16:39,033 >>   Total optimization steps = 15
+[INFO|trainer.py:2252] 2025-05-13 16:16:39,034 >>   Number of trainable parameters = 4,194,304
+  0%|          | 0/15 [00:00<?, ?it/s]/home/tiancongcong/miniconda3/envs/cogmait/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+  7%|▋         | 1/15 [00:02<00:31,  2.25s/it] 13%|█▎        | 2/15 [00:03<00:25,  1.94s/it] 20%|██        | 3/15 [00:06<00:23,  2.00s/it] 27%|██▋       | 4/15 [00:09<00:26,  2.44s/it] 33%|███▎      | 5/15 [00:12<00:28,  2.81s/it][INFO|trainer.py:4021] 2025-05-13 16:16:53,752 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:4023] 2025-05-13 16:16:53,752 >>   Num examples = 10
+[INFO|trainer.py:4026] 2025-05-13 16:16:53,752 >>   Batch size = 1
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 30%|███       | 3/10 [00:00<00:00, 19.17it/s][A
+ 50%|█████     | 5/10 [00:00<00:00, 14.67it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 13.52it/s][A
+ 90%|█████████ | 9/10 [00:00<00:00, 13.24it/s][A                                              
+                                              [A 33%|███▎      | 5/15 [00:15<00:28,  2.81s/it]
+100%|██████████| 10/10 [00:00<00:00, 13.24it/s][A
+                                               [A[INFO|trainer.py:3705] 2025-05-13 16:16:54,552 >> Saving model checkpoint to /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-5
+[INFO|configuration_utils.py:673] 2025-05-13 16:16:54,568 >> loading configuration file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/config.json
+[INFO|configuration_utils.py:742] 2025-05-13 16:16:54,569 >> Model config QWenConfig {
+  "architectures": [
+    "QWenLMHeadModel"
+  ],
+  "attn_dropout_prob": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_qwen.QWenConfig",
+    "AutoModelForCausalLM": "modeling_qwen.QWenLMHeadModel"
+  },
+  "bf16": false,
+  "emb_dropout_prob": 0.0,
+  "fp16": false,
+  "fp32": false,
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "kv_channels": 128,
+  "layer_norm_epsilon": 1e-06,
+  "max_position_embeddings": 8192,
+  "model_type": "qwen",
+  "no_bias": true,
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "onnx_safe": null,
+  "rotary_emb_base": 10000,
+  "rotary_pct": 1.0,
+  "scale_attn_weights": true,
+  "seq_length": 8192,
+  "softmax_in_fp32": false,
+  "tie_word_embeddings": false,
+  "tokenizer_class": "QWenTokenizer",
+  "transformers_version": "4.45.2",
+  "use_cache": true,
+  "use_cache_kernel": false,
+  "use_cache_quantization": false,
+  "use_dynamic_ntk": true,
+  "use_flash_attn": "auto",
+  "use_logn_attn": true,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:2641] 2025-05-13 16:16:54,605 >> tokenizer config file saved in /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-5/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2650] 2025-05-13 16:16:54,606 >> Special tokens file saved in /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-5/special_tokens_map.json
+/home/tiancongcong/miniconda3/envs/cogmait/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+ 40%|████      | 6/15 [00:16<00:28,  3.19s/it] 47%|████▋     | 7/15 [00:19<00:25,  3.14s/it] 53%|█████▎    | 8/15 [00:22<00:21,  3.14s/it] 60%|██████    | 9/15 [00:25<00:17,  2.98s/it] 67%|██████▋   | 10/15 [00:28<00:15,  3.09s/it]                                                67%|██████▋   | 10/15 [00:28<00:15,  3.09s/it] 73%|███████▎  | 11/15 [00:32<00:13,  3.41s/it][INFO|trainer.py:4021] 2025-05-13 16:17:13,598 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:4023] 2025-05-13 16:17:13,598 >>   Num examples = 10
+[INFO|trainer.py:4026] 2025-05-13 16:17:13,598 >>   Batch size = 1
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 40%|████      | 4/10 [00:00<00:00, 33.43it/s][A
+ 80%|████████  | 8/10 [00:00<00:00, 16.56it/s][A                                               
+                                              [A 73%|███████▎  | 11/15 [00:35<00:13,  3.41s/it]
+100%|██████████| 10/10 [00:00<00:00, 16.56it/s][A
+                                               [A[INFO|trainer.py:3705] 2025-05-13 16:17:14,247 >> Saving model checkpoint to /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-11
+[INFO|configuration_utils.py:673] 2025-05-13 16:17:14,260 >> loading configuration file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/config.json
+[INFO|configuration_utils.py:742] 2025-05-13 16:17:14,261 >> Model config QWenConfig {
+  "architectures": [
+    "QWenLMHeadModel"
+  ],
+  "attn_dropout_prob": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_qwen.QWenConfig",
+    "AutoModelForCausalLM": "modeling_qwen.QWenLMHeadModel"
+  },
+  "bf16": false,
+  "emb_dropout_prob": 0.0,
+  "fp16": false,
+  "fp32": false,
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "kv_channels": 128,
+  "layer_norm_epsilon": 1e-06,
+  "max_position_embeddings": 8192,
+  "model_type": "qwen",
+  "no_bias": true,
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "onnx_safe": null,
+  "rotary_emb_base": 10000,
+  "rotary_pct": 1.0,
+  "scale_attn_weights": true,
+  "seq_length": 8192,
+  "softmax_in_fp32": false,
+  "tie_word_embeddings": false,
+  "tokenizer_class": "QWenTokenizer",
+  "transformers_version": "4.45.2",
+  "use_cache": true,
+  "use_cache_kernel": false,
+  "use_cache_quantization": false,
+  "use_dynamic_ntk": true,
+  "use_flash_attn": "auto",
+  "use_logn_attn": true,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:2641] 2025-05-13 16:17:14,298 >> tokenizer config file saved in /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-11/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2650] 2025-05-13 16:17:14,299 >> Special tokens file saved in /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-11/special_tokens_map.json
+[INFO|trainer.py:3797] 2025-05-13 16:17:14,419 >> Deleting older checkpoint [/home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-5] due to args.save_total_limit
+/home/tiancongcong/miniconda3/envs/cogmait/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+ 80%|████████  | 12/15 [00:36<00:10,  3.55s/it] 87%|████████▋ | 13/15 [00:40<00:07,  3.65s/it] 93%|█████████▎| 14/15 [00:44<00:03,  3.73s/it]100%|██████████| 15/15 [00:48<00:00,  3.86s/it][INFO|trainer.py:3705] 2025-05-13 16:17:27,675 >> Saving model checkpoint to /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-15
+[INFO|configuration_utils.py:673] 2025-05-13 16:17:27,688 >> loading configuration file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/config.json
+[INFO|configuration_utils.py:742] 2025-05-13 16:17:27,689 >> Model config QWenConfig {
+  "architectures": [
+    "QWenLMHeadModel"
+  ],
+  "attn_dropout_prob": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_qwen.QWenConfig",
+    "AutoModelForCausalLM": "modeling_qwen.QWenLMHeadModel"
+  },
+  "bf16": false,
+  "emb_dropout_prob": 0.0,
+  "fp16": false,
+  "fp32": false,
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "kv_channels": 128,
+  "layer_norm_epsilon": 1e-06,
+  "max_position_embeddings": 8192,
+  "model_type": "qwen",
+  "no_bias": true,
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "onnx_safe": null,
+  "rotary_emb_base": 10000,
+  "rotary_pct": 1.0,
+  "scale_attn_weights": true,
+  "seq_length": 8192,
+  "softmax_in_fp32": false,
+  "tie_word_embeddings": false,
+  "tokenizer_class": "QWenTokenizer",
+  "transformers_version": "4.45.2",
+  "use_cache": true,
+  "use_cache_kernel": false,
+  "use_cache_quantization": false,
+  "use_dynamic_ntk": true,
+  "use_flash_attn": "auto",
+  "use_logn_attn": true,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:2641] 2025-05-13 16:17:27,725 >> tokenizer config file saved in /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-15/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2650] 2025-05-13 16:17:27,725 >> Special tokens file saved in /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-15/special_tokens_map.json
+[INFO|trainer.py:4021] 2025-05-13 16:17:27,844 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:4023] 2025-05-13 16:17:27,844 >>   Num examples = 10
+[INFO|trainer.py:4026] 2025-05-13 16:17:27,844 >>   Batch size = 1
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 30%|███       | 3/10 [00:00<00:00, 19.19it/s][A
+ 50%|█████     | 5/10 [00:00<00:00, 14.53it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 13.38it/s][A
+ 90%|█████████ | 9/10 [00:00<00:00, 13.06it/s][A                                               
+                                              [A100%|██████████| 15/15 [00:49<00:00,  3.86s/it]
+100%|██████████| 10/10 [00:00<00:00, 13.06it/s][A
+                                               [A[INFO|trainer.py:3705] 2025-05-13 16:17:28,658 >> Saving model checkpoint to /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-15
+[INFO|configuration_utils.py:673] 2025-05-13 16:17:28,663 >> loading configuration file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/config.json
+[INFO|configuration_utils.py:742] 2025-05-13 16:17:28,663 >> Model config QWenConfig {
+  "architectures": [
+    "QWenLMHeadModel"
+  ],
+  "attn_dropout_prob": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_qwen.QWenConfig",
+    "AutoModelForCausalLM": "modeling_qwen.QWenLMHeadModel"
+  },
+  "bf16": false,
+  "emb_dropout_prob": 0.0,
+  "fp16": false,
+  "fp32": false,
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "kv_channels": 128,
+  "layer_norm_epsilon": 1e-06,
+  "max_position_embeddings": 8192,
+  "model_type": "qwen",
+  "no_bias": true,
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "onnx_safe": null,
+  "rotary_emb_base": 10000,
+  "rotary_pct": 1.0,
+  "scale_attn_weights": true,
+  "seq_length": 8192,
+  "softmax_in_fp32": false,
+  "tie_word_embeddings": false,
+  "tokenizer_class": "QWenTokenizer",
+  "transformers_version": "4.45.2",
+  "use_cache": true,
+  "use_cache_kernel": false,
+  "use_cache_quantization": false,
+  "use_dynamic_ntk": true,
+  "use_flash_attn": "auto",
+  "use_logn_attn": true,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:2641] 2025-05-13 16:17:28,747 >> tokenizer config file saved in /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-15/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2650] 2025-05-13 16:17:28,747 >> Special tokens file saved in /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-15/special_tokens_map.json
+[INFO|trainer.py:3797] 2025-05-13 16:17:28,942 >> Deleting older checkpoint [/home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-11] due to args.save_total_limit
+[INFO|trainer.py:2505] 2025-05-13 16:17:28,957 >> 
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+[INFO|trainer.py:2743] 2025-05-13 16:17:28,957 >> Loading best model from /home/tiancongcong/code/cogmait-fine-tune/finetune-output/checkpoint-15 (score: 1.3803454637527466).
+                                               100%|██████████| 15/15 [00:49<00:00,  3.86s/it]100%|██████████| 15/15 [00:49<00:00,  3.33s/it]
+[INFO|trainer.py:3705] 2025-05-13 16:17:28,974 >> Saving model checkpoint to /home/tiancongcong/code/cogmait-fine-tune/finetune-output
+[INFO|configuration_utils.py:673] 2025-05-13 16:17:28,986 >> loading configuration file /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat/config.json
+[INFO|configuration_utils.py:742] 2025-05-13 16:17:28,987 >> Model config QWenConfig {
+  "architectures": [
+    "QWenLMHeadModel"
+  ],
+  "attn_dropout_prob": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_qwen.QWenConfig",
+    "AutoModelForCausalLM": "modeling_qwen.QWenLMHeadModel"
+  },
+  "bf16": false,
+  "emb_dropout_prob": 0.0,
+  "fp16": false,
+  "fp32": false,
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "kv_channels": 128,
+  "layer_norm_epsilon": 1e-06,
+  "max_position_embeddings": 8192,
+  "model_type": "qwen",
+  "no_bias": true,
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "onnx_safe": null,
+  "rotary_emb_base": 10000,
+  "rotary_pct": 1.0,
+  "scale_attn_weights": true,
+  "seq_length": 8192,
+  "softmax_in_fp32": false,
+  "tie_word_embeddings": false,
+  "tokenizer_class": "QWenTokenizer",
+  "transformers_version": "4.45.2",
+  "use_cache": true,
+  "use_cache_kernel": false,
+  "use_cache_quantization": false,
+  "use_dynamic_ntk": true,
+  "use_flash_attn": "auto",
+  "use_logn_attn": true,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:2641] 2025-05-13 16:17:29,023 >> tokenizer config file saved in /home/tiancongcong/code/cogmait-fine-tune/finetune-output/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2650] 2025-05-13 16:17:29,023 >> Special tokens file saved in /home/tiancongcong/code/cogmait-fine-tune/finetune-output/special_tokens_map.json
+[INFO|trainer.py:4021] 2025-05-13 16:17:29,242 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:4023] 2025-05-13 16:17:29,242 >>   Num examples = 10
+[INFO|trainer.py:4026] 2025-05-13 16:17:29,242 >>   Batch size = 1
+  0%|          | 0/10 [00:00<?, ?it/s] 30%|███       | 3/10 [00:00<00:00, 19.21it/s] 50%|█████     | 5/10 [00:00<00:00, 19.12it/s] 80%|████████  | 8/10 [00:00<00:00, 19.52it/s]100%|██████████| 10/10 [00:00<00:00, 16.92it/s]100%|██████████| 10/10 [00:00<00:00, 17.75it/s]
+[INFO|modelcard.py:449] 2025-05-13 16:17:29,886 >> Dropping the following result as it does not have all the necessary fields:
+{'task': {'name': 'Causal Language Modeling', 'type': 'text-generation'}}
+2025-05-13 16:17:31.317 | INFO     | llmtuner.wrapers.trainval:trval_main:183 - exit_code:

@@ -1,6 +1,6 @@
 cogmait-ft train \
 --model_name_or_path /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat \
---model_template Qwen-7B-Chat \
+--model_template qwen \
 --dataset /home/tiancongcong/code/cogmait-fine-tune/data/alpaca_zh_demo.json \
 --each_max_samples 100 \
 --output_dir /home/tiancongcong/code/cogmait-fine-tune/finetune-output \

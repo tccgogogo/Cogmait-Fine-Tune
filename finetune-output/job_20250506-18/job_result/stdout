@@ -1,0 +1,53 @@
+[INFO|2025-05-13 16:16:25] llamafactory.model.loader:83 >> model_args: ModelArguments(model_name_or_path='/home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat', adapter_name_or_path=None, adapter_folder=None, cache_dir=None, use_fast_tokenizer=True, resize_vocab=False, split_special_tokens=False, add_tokens=None, add_special_tokens=None, model_revision='main', low_cpu_mem_usage=True, rope_scaling=None, flash_attn='auto', shift_attn=False, mixture_of_depths=None, use_unsloth=False, use_unsloth_gc=False, enable_liger_kernel=False, moe_aux_loss_coef=None, disable_gradient_checkpointing=False, use_reentrant_gc=True, upcast_layernorm=False, upcast_lmhead_output=False, train_from_scratch=False, infer_backend='huggingface', offload_folder='offload', use_cache=True, infer_dtype='auto', hf_hub_token=None, ms_hub_token=None, om_hub_token=None, print_param_status=False, trust_remote_code=True, quantization_method='bnb', quantization_bit=None, quantization_type='nf4', double_quantization=True, quantization_device_map=None, image_max_pixels=589824, image_min_pixels=1024, image_do_pan_and_scan=False, crop_to_patches=False, use_audio_in_video=False, video_max_pixels=65536, video_min_pixels=256, video_fps=2.0, video_maxlen=128, audio_sampling_rate=16000, export_dir=None, export_size=5, export_device='cpu', export_quantization_bit=None, export_quantization_dataset=None, export_quantization_nsamples=128, export_quantization_maxlen=1024, export_legacy_format=False, export_hub_model_id=None, vllm_maxlen=4096, vllm_gpu_util=0.7, vllm_enforce_eager=False, vllm_max_lora_rank=32, vllm_config=None, sglang_maxlen=4096, sglang_mem_fraction=0.7, sglang_tp_size=-1, sglang_config=None, compute_dtype=torch.float16, device_map={'': device(type='cuda', index=0)}, model_max_length=8192, block_diag_attn=False)
+[INFO|2025-05-13 16:16:25] llamafactory.model.loader:84 >> model_args.trust_remote_code: True
+[INFO|2025-05-13 16:16:26] llamafactory.data.template:143 >> Add eos token: <|im_end|>.
+[INFO|2025-05-13 16:16:26] llamafactory.data.template:143 >> Add pad token: <|im_end|>
+[INFO|2025-05-13 16:16:26] llamafactory.data.loader:143 >> Loading dataset alpaca_zh_demo.json...
+training example:
+input_ids:
+[151644, 8948, 198, 2610, 525, 1207, 16948, 11, 3465, 553, 54364, 14817, 13, 1446, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 102450, 62926, 104136, 89012, 22382, 44177, 101047, 100369, 99891, 101911, 5122, 102150, 101911, 33108, 8903, 63109, 36587, 1773, 151645, 198, 151644, 77091, 198, 102150, 101911, 20412, 100206, 99891, 104111, 101911, 3837, 99652, 100140, 55338, 100702, 31914, 100132, 67071, 48934, 30709, 105166, 106251, 8545, 102150, 31838, 104384, 1773, 100346, 114651, 104111, 99896, 101911, 3837, 100140, 102150, 20412, 55338, 100206, 105166, 100166, 33108, 98380, 75317, 3837, 104152, 100206, 100132, 67071, 46944, 57191, 101213, 102150, 101286, 3837, 102150, 101097, 67338, 102150, 110935, 100394, 100676, 102150, 1773, 100147, 101911, 67071, 106929, 22382, 120806, 5373, 99330, 101190, 31843, 33108, 100167, 100809, 34204, 16, 23, 18, 24, 7948, 104181, 101080, 3407, 8903, 63109, 36587, 104442, 101281, 20412, 101281, 38176, 9370, 99488, 3837, 105884, 3837, 113837, 102074, 101281, 108215, 9370, 101911, 1773, 99487, 101911, 112479, 105062, 29490, 63109, 36587, 101313, 3837, 100140, 102493, 102095, 105339, 9370, 99488, 1773, 8903, 63109, 36587, 9370, 101080, 28946, 20412, 99685, 99470, 72225, 13935, 99826, 99243, 99685, 3837, 104677, 16, 21, 101186, 84607, 102098, 108124, 101712, 26940, 35727, 31914, 104001, 67831, 87243, 109268, 34187, 101281, 38176, 113837, 102074, 101281, 104001, 9370, 104949, 3837, 17714, 35727, 104179, 103949, 107759, 102334, 102007, 1773, 151645, 198]
+inputs:
+<|im_start|>system
+You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
+<|im_start|>user
+识别并解释给定列表中的两个科学理论：细胞理论和日心说。<|im_end|>
+<|im_start|>assistant
+细胞理论是生物科学的一个理论，它认为所有生命体都是由微小的基本单元——细胞所构成。这是生物学的一个基础理论，认为细胞是所有生物的基本结构和功能单位，所有的生物都是由一个或多个细胞组成，细胞只能通过细胞分裂产生新的细胞。这一理论由薛定谔、施瓦内和雪莱于1839年首次提出。
+
+日心说是指太阳是太阳系的中心，也就是说，行星围绕太阳旋转的理论。这个理论打破了传统的地心说观点，认为地球并不是宇宙的中心。日心说的提出者是尼古拉·哥白尼，他在16世纪初发表了他的著作《天体运行论》，阐述了太阳系行星围绕太阳运行的模型，为天文学的发展做出了巨大贡献。<|im_end|>
+
+label_ids:
+[-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 102150, 101911, 20412, 100206, 99891, 104111, 101911, 3837, 99652, 100140, 55338, 100702, 31914, 100132, 67071, 48934, 30709, 105166, 106251, 8545, 102150, 31838, 104384, 1773, 100346, 114651, 104111, 99896, 101911, 3837, 100140, 102150, 20412, 55338, 100206, 105166, 100166, 33108, 98380, 75317, 3837, 104152, 100206, 100132, 67071, 46944, 57191, 101213, 102150, 101286, 3837, 102150, 101097, 67338, 102150, 110935, 100394, 100676, 102150, 1773, 100147, 101911, 67071, 106929, 22382, 120806, 5373, 99330, 101190, 31843, 33108, 100167, 100809, 34204, 16, 23, 18, 24, 7948, 104181, 101080, 3407, 8903, 63109, 36587, 104442, 101281, 20412, 101281, 38176, 9370, 99488, 3837, 105884, 3837, 113837, 102074, 101281, 108215, 9370, 101911, 1773, 99487, 101911, 112479, 105062, 29490, 63109, 36587, 101313, 3837, 100140, 102493, 102095, 105339, 9370, 99488, 1773, 8903, 63109, 36587, 9370, 101080, 28946, 20412, 99685, 99470, 72225, 13935, 99826, 99243, 99685, 3837, 104677, 16, 21, 101186, 84607, 102098, 108124, 101712, 26940, 35727, 31914, 104001, 67831, 87243, 109268, 34187, 101281, 38176, 113837, 102074, 101281, 104001, 9370, 104949, 3837, 17714, 35727, 104179, 103949, 107759, 102334, 102007, 1773, 151645, 198]
+labels:
+细胞理论是生物科学的一个理论，它认为所有生命体都是由微小的基本单元——细胞所构成。这是生物学的一个基础理论，认为细胞是所有生物的基本结构和功能单位，所有的生物都是由一个或多个细胞组成，细胞只能通过细胞分裂产生新的细胞。这一理论由薛定谔、施瓦内和雪莱于1839年首次提出。
+
+日心说是指太阳是太阳系的中心，也就是说，行星围绕太阳旋转的理论。这个理论打破了传统的地心说观点，认为地球并不是宇宙的中心。日心说的提出者是尼古拉·哥白尼，他在16世纪初发表了他的著作《天体运行论》，阐述了太阳系行星围绕太阳运行的模型，为天文学的发展做出了巨大贡献。<|im_end|>
+
+[INFO|2025-05-13 16:16:28] llamafactory.model.model_utils.kv_cache:143 >> KV cache is disabled during training.
+[WARNING|2025-05-13 16:16:36] llamafactory.model.model_utils.checkpointing:154 >> You are using the old GC format, some features (e.g. BAdam) will be invalid.
+[INFO|2025-05-13 16:16:36] llamafactory.model.model_utils.checkpointing:143 >> Gradient checkpointing enabled.
+[INFO|2025-05-13 16:16:36] llamafactory.model.model_utils.attention:143 >> Using vanilla attention implementation.
+[INFO|2025-05-13 16:16:36] llamafactory.model.adapter:143 >> Upcasting trainable params to float32.
+[INFO|2025-05-13 16:16:36] llamafactory.model.adapter:143 >> Fine-tuning method: LoRA
+[INFO|2025-05-13 16:16:38] llamafactory.model.loader:143 >> trainable params: 4,194,304 || all params: 7,725,518,848 || trainable%: 0.0543
+{'eval_loss': 1.3847630023956299, 'eval_runtime': 0.7994, 'eval_samples_per_second': 12.51, 'eval_steps_per_second': 12.51, 'epoch': 0.87}
+{'loss': 1.5157, 'grad_norm': 0.2188923954963684, 'learning_rate': 1.2500000000000006e-05, 'epoch': 1.74}
+{'eval_loss': 1.3808815479278564, 'eval_runtime': 0.6452, 'eval_samples_per_second': 15.5, 'eval_steps_per_second': 15.5, 'epoch': 1.91}
+{'eval_loss': 1.3803454637527466, 'eval_runtime': 0.8129, 'eval_samples_per_second': 12.301, 'eval_steps_per_second': 12.301, 'epoch': 2.61}
+{'train_runtime': 49.9396, 'train_samples_per_second': 5.407, 'train_steps_per_second': 0.3, 'train_loss': 1.4658370653788249, 'epoch': 2.61}
+***** train metrics *****
+  epoch                    =     2.6087
+  total_flos               =  2342790GF
+  train_loss               =     1.4658
+  train_runtime            = 0:00:49.93
+  train_samples_per_second =      5.407
+  train_steps_per_second   =        0.3
+Figure saved at: /home/tiancongcong/code/cogmait-fine-tune/finetune-output/training_loss.png
+Figure saved at: /home/tiancongcong/code/cogmait-fine-tune/finetune-output/training_eval_loss.png
+[WARNING|2025-05-13 16:17:29] llamafactory.extras.ploting:148 >> No metric eval_accuracy to plot.
+***** eval metrics *****
+  epoch                   =     2.6087
+  eval_loss               =     1.3803
+  eval_runtime            = 0:00:00.64
+  eval_samples_per_second =      15.57
+  eval_steps_per_second   =      15.57

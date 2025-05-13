@@ -1,5 +1,6 @@
-model_name_or_path: meta-llama/Meta-Llama-3-8B-Instruct
-adapter_name_or_path: saves/llama3-8b/lora/sft
-template: llama3
+model_name_or_path: /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat
+adapter_name_or_path: saves/Qwen-7B-Chat/lora/sft
+template: qwen
 infer_backend: huggingface  # choices: [huggingface, vllm, sglang]
 trust_remote_code: true
+do_sample: false

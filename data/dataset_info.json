@@ -1,5 +1,8 @@
 {
-    "alpaca_zh_demo.json": {
+    "alpaca_zh_demo": {
         "file_name": "alpaca_zh_demo.json"
+    },
+    "identity": {
+        "file_name": "identity.json"
     }
 }

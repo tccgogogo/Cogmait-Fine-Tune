@@ -10,7 +10,7 @@ lora_rank: 8
 lora_target: all
 
 ### dataset
-dataset: identity,alpaca_en_demo
+dataset: identity,alpaca_zh_demo
 template: llama3
 cutoff_len: 2048
 max_samples: 1000

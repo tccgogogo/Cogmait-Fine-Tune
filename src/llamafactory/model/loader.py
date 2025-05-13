@@ -36,6 +36,7 @@ from .model_utils.misc import register_autoclass
 from .model_utils.mod import convert_pretrained_model_to_mod, load_mod_pretrained_model
 from .model_utils.unsloth import load_unsloth_pretrained_model
 from .model_utils.valuehead import load_valuehead_params
+from .model_utils.fix_numeric import apply_numeric_fixes
 from .patcher import patch_config, patch_model, patch_processor, patch_tokenizer, patch_valuehead_model
 
 
@@ -195,6 +196,9 @@ def load_model(
         if vhead_params is not None:
             model.load_state_dict(vhead_params, strict=False)
             logger.info_rank0(f"Loaded valuehead from checkpoint: {vhead_path}")
+
+    # 应用数值修复，避免inf/nan值引起的问题
+    model = apply_numeric_fixes(model)
 
     if not is_trainable:
         model.requires_grad_(False)
