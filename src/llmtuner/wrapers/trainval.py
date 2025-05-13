@@ -190,21 +190,21 @@ def trval_main(args):
         shutil.rmtree(checkpoint)
 
     # phase2: merge LoRA weights and export model, generate pytorch_model-0000*.bin
-    if finetuning_type == 'lora':
-        export_file = os.path.join(dir_path, 'export_model.py')
-        export_cmd = f'''python {export_file} \\''' + export_params_cmd
-        os.system(export_cmd)
-        os.remove(os.path.join(output_dir, 'adapter_config.json'))
-        # os.remove(os.path.join(output_dir, 'adapter_model.bin'))
+#     if finetuning_type == 'lora':
+#         export_file = os.path.join(dir_path, 'export_model.py')
+#         export_cmd = f'''python {export_file} \\''' + export_params_cmd
+#         os.system(export_cmd)
+#         os.remove(os.path.join(output_dir, 'adapter_config.json'))
+#         # os.remove(os.path.join(output_dir, 'adapter_model.bin'))
 
 
-#
-# phase3: predict 100 example, compute metrics (ROUGE, BLEU), metrics saved in predict_results.json, predictions saved in generated_predictions.jsonl
-# todo: only support single gpu predict(multi gpu deepspeed infer is so slow)
-    predict_cmd = f'''python {finetune_file} \\''' + predict_params_cmd
-    logger.info('predict_cmd:' + predict_cmd)
-    predict_p = subprocess.Popen(predict_cmd, shell=True, stdout=sys.stdout, stderr=sys.stderr)
-    exit_code = predict_p.wait()
-    if exit_code != 0:
-        print('predict failed.')
-        sys.exit(exit_code)
+# #
+# # phase3: predict 100 example, compute metrics (ROUGE, BLEU), metrics saved in predict_results.json, predictions saved in generated_predictions.jsonl
+# # todo: only support single gpu predict(multi gpu deepspeed infer is so slow)
+#     predict_cmd = f'''python {finetune_file} \\''' + predict_params_cmd
+#     logger.info('predict_cmd:' + predict_cmd)
+#     predict_p = subprocess.Popen(predict_cmd, shell=True, stdout=sys.stdout, stderr=sys.stderr)
+#     exit_code = predict_p.wait()
+#     if exit_code != 0:
+#         print('predict failed.')
+#         sys.exit(exit_code)

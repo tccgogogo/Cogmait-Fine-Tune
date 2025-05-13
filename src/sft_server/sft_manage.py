@@ -11,7 +11,7 @@ logger = getLogger(__name__)
 class SFTManage:
     ClientCliOutput = settings.CLIENT_CLI_OUTPUT
     # 执行的训练指令
-    ClientCli = 'llamafactory-cli'
+    ClientCli = 'cogmait-ft'
     ModelRootPath = settings.MODEL_ROOT_DIR
 
     class JobStatus:
@@ -64,6 +64,7 @@ class SFTManage:
 
     def run_job(self, options: str, commands: dict):
         try:
+            print("run_job:", self.job_id)
             lock_result = self.set_exec_lock_key()
             if not lock_result:
                 logger.info(f'job is already canceled, job_id: {self.job_id}')
@@ -127,7 +128,7 @@ class SFTManage:
             shutil.move(model_output_dir, publish_model_path)
 
         # 存储发布的模型名称
-        redis_client.set_no_expire(self.model_name_key, model_name)
+        redis_client.set_no_expiration(self.model_name_key, model_name)
 
     def cancel_publish_job(self, model_name: str):
         pub_model_name = redis_client.get(self.model_name_key)
@@ -167,21 +168,22 @@ class SFTManage:
             return f.read()
     
     def write_result(self, exit_code: int, stdout: str, stderr: str):
-        self.redis_client.set_no_expiration(self.exit_code_key, str(exit_code))
-        self.redis_client.set_no_expiration(self.stdout_key, stdout)
-        self.redis_client.set_no_expiration(self.stderr_key, stderr)
+        redis_client.set_no_expiration(self.exit_code_key, str(exit_code))
+        redis_client.set_no_expiration(self.stdout_key, stdout)
+        redis_client.set_no_expiration(self.stderr_key, stderr)
     
     def delete_result(self):
-        self.redis_client.delete(self.exit_code_key)
-        self.redis_client.delete(self.stdout_key)
-        self.redis_client.delete(self.stderr_key)
+        redis_client.delete(self.exit_code_key)
+        redis_client.delete(self.stdout_key)
+        redis_client.delete(self.stderr_key)
         shutil.rmtree(self.job_exec_dir)
     
     def set_exec_lock_key(self):
-        return self.redis_client.setNx(self.exec_lock_key, '1')
+        print("set_exec_lock_key:{}".format(self.exec_lock_key))
+        return redis_client.setNx(self.exec_lock_key, 1)
     
     def delete_exec_lock_key(self):
-        self.redis_client.delete(self.exec_lock_key)
+        redis_client.delete(self.exec_lock_key)
         
     def parse_commands(self, commands):
         pass

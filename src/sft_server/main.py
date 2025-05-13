@@ -13,13 +13,13 @@ async def root():
     return {"message": "Hello World"}
 
 @app.post("/v1.0/sft/job")
-async def finetune(job_id: str=Body(...), options: str=Body(...), commands: dict=Body(...)):
-    logger.info(f"Finetune task started: {job_id}, {options}, {commands}")
+async def finetune(job_id: str=Body(), options: list=Body(), params: dict=Body()):
+    logger.info(f"Finetune task started: {job_id}, {options}, {params}")
     # 异步调用接口，不会立即执行，而是将任务添加到队列中，等待执行
-    finetune_task.delay(job_id, options, commands)
+    finetune_task.delay(job_id, options, params)
     return {"status_code": 200, "status_message": "success"}
 
-@app.get('/v2.1/sft/model')
+@app.get('/v1.0/sft/model')
 def get_all_model():
     model_list = SFTManage.get_all_model()
     return {"status_code": 200, "status_message": "success", "data": model_list}

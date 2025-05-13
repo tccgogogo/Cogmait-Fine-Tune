@@ -1,12 +1,17 @@
 import redis
 import pickle
 from logging import getLogger
+from redis.connection import ConnectionPool
 import settings
 
 logger = getLogger(__name__)
+
 class RedisManager:
+
     def __init__(self, redis_url: str, max_connections: int = 10):
-        self.pool = redis.ConnectionPool(host=redis_url, max_connections=max_connections)
+        print("RedisManager:", redis_url)
+        self.pool = ConnectionPool.from_url(redis_url, 
+                                            max_connections=max_connections)
         self.connection = redis.StrictRedis(connection_pool=self.pool)
 
     def set(self, key: str, value: str, expiration: int = 3600):
@@ -95,7 +100,7 @@ class RedisManager:
             self.close()
             
     def close(self):
-        self.connection.disconnect()
+        self.connection.close()
 
 
 redis_client = RedisManager(settings.settings.redis_url)

@@ -77,7 +77,11 @@ def load_tokenizer(model_args: "ModelArguments") -> "TokenizerModule":
 
     Note: including inplace operation of model_args.
     """
+    model_args.trust_remote_code = True
+
     init_kwargs = _get_init_kwargs(model_args)
+   
+    logger.info("model_args.trust_remote_code: {}".format(model_args.trust_remote_code))
     try:
         tokenizer = AutoTokenizer.from_pretrained(
             model_args.model_name_or_path,
@@ -94,6 +98,7 @@ def load_tokenizer(model_args: "ModelArguments") -> "TokenizerModule":
             **init_kwargs,
         )
     except Exception as e:
+        print(e)
         raise OSError("Failed to load tokenizer.") from e
 
     patch_tokenizer(tokenizer, model_args)

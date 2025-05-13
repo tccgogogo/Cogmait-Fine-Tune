@@ -35,6 +35,8 @@ def get_requires() -> list[str]:
 
 def get_console_scripts() -> list[str]:
     console_scripts = ["llamafactory-cli = llamafactory.cli:main"]
+    console_scripts.append("cogmait-ft = llmtuner.wrapers.interface:main")
+
     if os.getenv("ENABLE_SHORT_CONSOLE", "1").lower() in ["true", "y", "1"]:
         console_scripts.append("lmf = llamafactory.cli:main")
 
@@ -79,7 +81,7 @@ extra_require = {
 
 def main():
     setup(
-        name="llamafactory",
+        name="cogmait-ft",
         version=get_version(),
         author="hiyouga",
         author_email="hiyouga@buaa.edu.cn",

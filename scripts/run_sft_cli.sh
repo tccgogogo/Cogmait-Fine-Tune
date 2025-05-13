@@ -1,0 +1,12 @@
+cogmait-ft train \
+--model_name_or_path /home/tiancongcong/.cache/modelscope/hub/models/Qwen/qwen-7B-chat \
+--model_template Qwen-7B-Chat \
+--dataset /home/tiancongcong/code/cogmait-fine-tune/data/alpaca_zh_demo.json \
+--each_max_samples 100 \
+--output_dir /home/tiancongcong/code/cogmait-fine-tune/finetune_output \
+--finetuning_type lora \
+--per_device_train_batch_size 4 \
+--val_ratio 0.1 \
+--learning_rate 0.00005 \
+--num_train_epochs 3 \
+--max_seq_len 8192 

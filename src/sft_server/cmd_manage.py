@@ -35,6 +35,7 @@ class CmdManage:
             raise Exception(f'timeout in execute cmd, [{cmd}]')
         except Exception as e:
             raise Exception(f'err in execute cmd: [{e}]')
+    @classmethod
     def parse_commands(cls, cmd, options: List[str], commands: dict):
         cmd = f'{cmd} {" ".join(options)}'
         for key, value in commands.items():

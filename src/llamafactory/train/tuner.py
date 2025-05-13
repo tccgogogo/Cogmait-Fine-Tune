@@ -20,22 +20,30 @@ import torch
 import torch.distributed as dist
 from transformers import EarlyStoppingCallback, PreTrainedModel
 
-from ..data import get_template_and_fix_tokenizer
-from ..extras import logging
-from ..extras.constants import V_HEAD_SAFE_WEIGHTS_NAME, V_HEAD_WEIGHTS_NAME
-from ..extras.misc import infer_optim_dtype
-from ..extras.packages import is_ray_available
-from ..hparams import get_infer_args, get_ray_args, get_train_args, read_args
-from ..model import load_model, load_tokenizer
-from .callbacks import LogCallback, PissaConvertCallback, ReporterCallback
-from .dpo import run_dpo
-from .kto import run_kto
-from .ppo import run_ppo
-from .pt import run_pt
-from .rm import run_rm
-from .sft import run_sft
-from .trainer_utils import get_ray_trainer, get_swanlab_callback
-
+# from ..data import get_template_and_fix_tokenizer
+# from ..extras import logging
+# from ..extras.constants import V_HEAD_SAFE_WEIGHTS_NAME, V_HEAD_WEIGHTS_NAME
+# from ..extras.misc import infer_optim_dtype
+# from ..extras.packages import is_ray_available
+# from ..hparams import get_infer_args, get_ray_args, get_train_args, read_args
+# from ..model import load_model, load_tokenizer
+# from .callbacks import LogCallback, PissaConvertCallback, ReporterCallback
+from llamafactory.data import get_template_and_fix_tokenizer
+from llamafactory.extras import logging
+from llamafactory.extras.constants import V_HEAD_SAFE_WEIGHTS_NAME, V_HEAD_WEIGHTS_NAME
+from llamafactory.extras.misc import infer_optim_dtype
+from llamafactory.extras.packages import is_ray_available
+from llamafactory.hparams import get_infer_args, get_ray_args, get_train_args, read_args
+from llamafactory.model import load_model, load_tokenizer
+from llamafactory.train.callbacks import LogCallback, PissaConvertCallback, ReporterCallback
+from llamafactory.train.dpo import run_dpo
+from llamafactory.train.kto import run_kto
+from llamafactory.train.ppo import run_ppo
+from llamafactory.train.pt import run_pt
+from llamafactory.train.rm import run_rm
+from llamafactory.train.sft import run_sft
+from llamafactory.train.trainer_utils import get_ray_trainer, get_swanlab_callback
+from typing import Dict, Any, List
 
 if is_ray_available():
     import ray
@@ -91,23 +99,43 @@ def _training_function(config: dict[str, Any]) -> None:
         logger.warning(f"Failed to destroy process group: {e}.")
 
 
-def run_exp(args: Optional[dict[str, Any]] = None, callbacks: Optional[list["TrainerCallback"]] = None) -> None:
-    args = read_args(args)
-    if "-h" in args or "--help" in args:
-        get_train_args(args)
+# def run_exp(args: Optional[dict[str, Any]] = None, callbacks: Optional[list["TrainerCallback"]] = None) -> None:
+#     args = read_args(args)
+#     if "-h" in args or "--help" in args:
+#         get_train_args(args)
 
-    ray_args = get_ray_args(args)
-    callbacks = callbacks or []
-    if ray_args.use_ray:
-        callbacks.append(RayTrainReportCallback())
-        trainer = get_ray_trainer(
-            training_function=_training_function,
-            train_loop_config={"args": args, "callbacks": callbacks},
-            ray_args=ray_args,
-        )
-        trainer.fit()
+#     ray_args = get_ray_args(args)
+#     callbacks = callbacks or []
+#     if ray_args.use_ray:
+#         callbacks.append(RayTrainReportCallback())
+#         trainer = get_ray_trainer(
+#             training_function=_training_function,
+#             train_loop_config={"args": args, "callbacks": callbacks},
+#             ray_args=ray_args,
+#         )
+#         trainer.fit()
+#     else:
+#         _training_function(config={"args": args, "callbacks": callbacks})
+
+def run_exp(args: Optional[Dict[str, Any]] = None,
+            callbacks: List["TrainerCallback"] = []) -> None:
+    callbacks.append(LogCallback())
+    model_args, data_args, training_args, finetuning_args, generating_args = get_train_args(args)
+
+    if finetuning_args.stage == "pt":
+        run_pt(model_args, data_args, training_args, finetuning_args, callbacks)
+    elif finetuning_args.stage == "sft":
+        run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+    elif finetuning_args.stage == "rm":
+        run_rm(model_args, data_args, training_args, finetuning_args, callbacks)
+    elif finetuning_args.stage == "ppo":
+        run_ppo(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+    elif finetuning_args.stage == "dpo":
+        run_dpo(model_args, data_args, training_args, finetuning_args, callbacks)
+    elif finetuning_args.stage == "kto":
+        run_kto(model_args, data_args, training_args, finetuning_args, callbacks)
     else:
-        _training_function(config={"args": args, "callbacks": callbacks})
+        raise ValueError("Unknown task: {}.".format(finetuning_args.stage))
 
 
 def export_model(args: Optional[dict[str, Any]] = None) -> None:
@@ -196,3 +224,7 @@ def export_model(args: Optional[dict[str, Any]] = None) -> None:
     with open(ollama_modelfile, "w", encoding="utf-8") as f:
         f.write(template.get_ollama_modelfile(tokenizer))
         logger.info_rank0(f"Ollama modelfile saved in {ollama_modelfile}")
+
+
+if __name__ == "__main__":
+    run_exp()

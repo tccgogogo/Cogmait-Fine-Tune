@@ -201,6 +201,7 @@ def get_ray_args(args: Optional[Union[dict[str, Any], list[str]]] = None) -> Ray
 
 def get_train_args(args: Optional[Union[dict[str, Any], list[str]]] = None) -> _TRAIN_CLS:
     model_args, data_args, training_args, finetuning_args, generating_args = _parse_train_args(args)
+    logger.info("model_args: {}, data_args: {}, training_args: {}, finetuning_args: {}, generating_args: {}".format(model_args, data_args, training_args, finetuning_args, generating_args))
 
     # Setup logging
     if training_args.should_log:

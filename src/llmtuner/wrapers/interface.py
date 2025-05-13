@@ -1,11 +1,12 @@
 import argparse
-from trainval import trval_main
+from .trainval import trval_main
+from loguru import logger
 
 def main():
     parser = argparse.ArgumentParser()
     sub_parsers = parser.add_subparsers(help='sub-command help')
     trval_parser = sub_parsers.add_parser('train', help='train on train dataset')
-
+    trval_parser.add_argument('--subcommand', default='train', type=str)
     trval_parser.add_argument('--model_name_or_path', type=str, required=True, help='model name')
     trval_parser.add_argument('--model_template', help='model template', required=True, type=str)
     trval_parser.add_argument('--dataset',
@@ -36,6 +37,8 @@ def main():
                               action='store_true')
 
     args = parser.parse_args()
+    logger.info("llamafactory args: {}", args)
+
     if args.subcommand == 'train':
         trval_main(args)
 if __name__ == "__main__":
